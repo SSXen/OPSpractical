@@ -1,0 +1,26 @@
+sudo su
+sudo apt update
+apt install nginx -y
+service nginx status
+servie nginx start
+cd/var/www/html
+sudo mkdir labs
+cd labs
+ln -s /var/www/html labs html
+sudo "${EDITOR:-nano}"
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>STUDENT INFORMATION PAGE</h1>
+<p>initials:MS  // initials:RDK </p>
+<p>Name: Mulalo // Name: Bouraga </p>
+<p>student No:221917845  // student No:218001568 </p>
+<p>Course: Computer System  </p>
+</body>
+</html>
