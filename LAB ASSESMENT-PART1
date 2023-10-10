@@ -1,14 +1,15 @@
-sudo su
-sudo apt update
+ps|grep nginx
+
+apt update
 apt install nginx -y
 service nginx status
-servie nginx start
+service nginx start
 cd/var/www/html
-sudo mkdir labs
+mkdir labs
 cd labs
 ln -s /var/www/html labs html
-sudo "${EDITOR:-nano}"
-
+mkdir index.html
+cd index.html
 
 <!DOCTYPE html>
 <html>
