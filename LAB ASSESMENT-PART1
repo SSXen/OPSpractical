@@ -26,7 +26,7 @@ fi
 cd/var/www/html.
 mkdir labs
 cd labs
-chown $(whoami) labs??????
+chown $(whoami) labs
 
 ln -s /var/labs ~/html
 touch index.html
