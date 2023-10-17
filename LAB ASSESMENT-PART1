@@ -68,7 +68,17 @@ mysql_secure-installation
 ufw allow mysql
 
 #access mysql client
--u root -p
+mysql -u root -p
+
+sudo systemctl stop mysql
+sudo mysqld_safe --skip-grant-tables &
+mysql -u root
+UPDATE mysql.user SET authentication_string=PASSWORD('your_new_password') WHERE User='root';
+FLUSH PRIVILEGES;
+quit
+sudo pkill mysqld
+sudo systemctl start mysql
+
 
 ##Creating Student table
 
