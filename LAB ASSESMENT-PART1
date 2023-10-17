@@ -46,3 +46,30 @@ cd index.html
 <p>Course: Computer System  </p>
 </body>
 </html>
+
+##Setting up mySql database 
+##install my sql
+apt update
+apt install -y mysql-server
+
+#start
+systemctl start mysql
+
+#enable to start on boot
+systemctl enable mysql
+
+#Secure sql installation
+mysql_secure-installation
+
+#configure firewall rules
+ufw allow mysql
+
+#access mysql client
+-u root -p
+
+##Creating Student table
+#connect to mysql server
+#creating "student records"
+#creating "students"
+#populate the"Students" with student records
+#verify the table and data using select statements
