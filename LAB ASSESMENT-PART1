@@ -26,11 +26,15 @@ fi
 cd/var/www/html.
 mkdir labs
 cd labs
-chown $(whoami) labs
+chown user:root labs
 
 ln -s /var/labs ~/html
+ls#check if link installed
 touch index.html
 cd index.html
+//you can use nano index.html paste your html doc inside the index.html
+then  cat index.html//
+
 
 <!DOCTYPE html>
 <html>
@@ -68,8 +72,28 @@ ufw allow mysql
 -u root -p
 
 ##Creating Student table
+
 #connect to mysql server
-#creating "student records"
-#creating "students"
+mysql -u azureuser -p #mysql username
+#creating "student records"database
+mysql -u(username)-p(password) -h(localhost)-e(name?)
+
+#creating "students" tabl
+studenttable(
+   student_id INT PRIMARY KEY
+AUTO_INCREMENT,
+    name VARCHAR(50),
+    age INT,
+    gender VARCHAR(10), 
+    course VARCHAR(50)
+);
+
+)
 #populate the"Students" with student records
+INSERT INTO student(name,age,gender,course)
+VALUES
+     ('Mulalo','20',Male,'Computer Systems');
+
 #verify the table and data using select statements
+SELECT statement
+SELECT *FROM students;
