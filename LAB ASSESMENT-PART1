@@ -29,11 +29,10 @@ cd labs
 chown user:root labs
 
 ln -s /var/labs ~/html
-ls#check if link installed
+
 touch index.html
 cd index.html
-//you can use nano index.html paste your html doc inside the index.html
-then  cat index.html//
+
 
 
 <!DOCTYPE html>
@@ -74,12 +73,11 @@ ufw allow mysql
 ##Creating Student table
 
 #connect to mysql server
-mysql -u azureuser -p #mysql username
-#creating "student records"database
-mysql -u(username)-p(password) -h(localhost)-e(name?)
+mysql -u azureuser -p 
+CREATE DATABASE studentsManagement;
+USE student_record;
 
-#creating "students" tabl
-studenttable(
+CREATE TABLE studentInfo(
    student_id INT PRIMARY KEY
 AUTO_INCREMENT,
     name VARCHAR(50),
