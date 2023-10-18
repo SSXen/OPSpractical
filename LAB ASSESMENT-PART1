@@ -67,17 +67,15 @@ mysql_secure-installation
 #configure firewall rules
 ufw allow mysql
 
+sudo mysql
+use mysql
+select user,authentication_string,plugin,host from mysql.user;
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'MYPASSWORD';
+FLUSH PRIVILEGES
+
 #access mysql client
 mysql -u root -p
 
-sudo systemctl stop mysql
-sudo mysqld_safe --skip-grant-tables &
-mysql -u root
-UPDATE mysql.user SET authentication_string=PASSWORD('your_new_password') WHERE User='root';
-FLUSH PRIVILEGES;
-quit
-sudo pkill mysqld
-sudo systemctl start mysql
 
 
 ##Creating Student table
