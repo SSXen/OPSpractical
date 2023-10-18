@@ -50,32 +50,43 @@ cd index.html
 </body>
 </html>
 
+
+13.64.96.123
 ##Setting up mySql database 
 ##install my sql
-apt update
-apt install -y mysql-server
+sudo apt update
+sudo apt install -y mysql-server
 
 #start
-systemctl start mysql
+sudo systemctl start mysql
 
 #enable to start on boot
-systemctl enable mysql
+sudo systemctl enable mysql
 
 #Secure sql installation
-mysql_secure-installation
+sudo mysql_secure_installation
 
 #configure firewall rules
-ufw allow mysql
+sudo ufw allow mysql
 
 sudo mysql
-use mysql
+use mysql;
 select user,authentication_string,plugin,host from mysql.user;
-ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'MYPASSWORD';
-FLUSH PRIVILEGES
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'MasiaMSS';
+FLUSH PRIVILEGES;
 
 #access mysql client
 mysql -u root -p
-
+ #remote connection
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+bind-address = your_vm_public_ip
+mysql -u root -p
+GRANT ALL PRIVILEGES ON your_database.* TO 'your_username'@'your_web_server_ip' IDENTIFIED BY 'your_password';
+FLUSH PRIVILEGES;
+EXIT;
+sudo service mysql restart
+sudo ufw allow 3306/tcp
+mysql -u your_username -h your_vm_public_ip -p
 
 
 ##Creating Student table
@@ -83,10 +94,12 @@ mysql -u root -p
 #connect to mysql server
 mysql -u azureuser -p 
 CREATE DATABASE studentsManagement;
-USE student_record;
+USE studentsManagement;
 
 CREATE TABLE studentInfo(
-   student_id INT PRIMARY KEY
+
+   student_id INT PRIMARY KEY????
+
 AUTO_INCREMENT,
     name VARCHAR(50),
     age INT,
@@ -94,12 +107,13 @@ AUTO_INCREMENT,
     course VARCHAR(50)
 );
 
-)
+
+
 #populate the"Students" with student records
-INSERT INTO student(name,age,gender,course)
+INSERT INTO studentInfo(initialSname,studentNum,course)
 VALUES
-     ('Mulalo','20',Male,'Computer Systems');
+     ('Mulalo','MS MASIA','221917845','Computer Systems');
 
 #verify the table and data using select statements
-SELECT statement
-SELECT *FROM students;
+
+SELECT * FROM studentInfo;
