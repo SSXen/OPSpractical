@@ -113,7 +113,85 @@ AUTO_INCREMENT,
 INSERT INTO studentInfo(initialSname,studentNum,course)
 VALUES
      ('Mulalo','MS MASIA','221917845','Computer Systems');
+     ('BOURAGA rdk', '218001568',çomputer systems');
 
 #verify the table and data using select statements
 
 SELECT * FROM studentInfo;
+
+
+#Python configurration part 5
+
+import mysql.connector
+
+# MySQL Database Configuration
+db_config = {
+    'user': 'your_user',
+    'password': 'your_password',
+    'host': 'localhost',
+    'database': 'student_db'
+}
+
+try:
+    # Connect to the MySQL database
+    conn = mysql.connector.connect(**db_config)
+    
+    if conn.is_connected():
+        cursor = conn.cursor(dictionary=True)  # Use a dictionary cursor for easier data manipulation
+        query = "SELECT * FROM students"
+        cursor.execute(query)
+        students = cursor.fetchall()
+        
+        # You can perform data processing or rendering here, e.g., creating an HTML page
+        for student in students:
+            print(f"Student ID: {student['student_id']}, Name: {student['name']}, Age: {student['age']}")
+
+except mysql.connector.Error as e:
+    print(f"Error: {e}")
+    
+finally:
+    cursor.close()
+    conn.close()
+
+
+#Task 6: Display Data on a Webpage using NGINX
+
+import mysql.connector
+
+# MySQL Database Configuration
+db_config = {
+    'user': 'your_user',
+    'password': 'your_password',
+    'host': 'localhost',
+    'database': 'student_db'
+}
+
+try:
+    # Connect to the MySQL database
+    conn = mysql.connector.connect(**db_config)
+    
+    if conn.is_connected():
+        cursor = conn.cursor(dictionary=True)
+        query = "SELECT * FROM students"
+        cursor.execute(query)
+        students = cursor.fetchall()
+        
+        # Create an HTML page
+        html_content = "<html><head><title>Student Information</title></head><body><h1>Student Information</h1>"
+        
+        for student in students:
+            html_content += f"<p>Student ID: {student['student_id']}, Name: {student['name']}, Age: {student['age']}</p>"
+        
+        html_content += "</body></html>"
+        
+        with open('/var/www/html/student_info.html', 'w') as file:
+            file.write(html_content)
+
+except mysql.connector.Error as e:
+    print(f"Error: {e}")
+    
+finally:
+    cursor.close()
+    conn.close()
+
+
